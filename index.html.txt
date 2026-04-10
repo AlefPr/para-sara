@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meu Amor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section class="hero">
+        <h1 class="titulo-principal">Feliz Aniversário, Sara!</h1>
+        <p>Cada segundo ao seu lado é um presente.</p>
+        <div id="contador">Carregando nosso tempo...</div>
+    </section>
+
+    <section class="galeria">
+        <h2>Nossos Momentos</h2>
+        <div class="fotos-container">
+            <div class="polaroid">
+                <img src="img/foto1.jpg" alt="Nossa Foto">
+                <p>Onde tudo começou</p>
+            </div>
+            <div class="polaroid">
+                <img src="img/foto2.jpg" alt="Nossa Foto">
+                <p>Meu sorriso favorito</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

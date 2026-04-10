@@ -1,0 +1,16 @@
+function atualizarContador() {
+    const dataInicio = new Date('2024-01-01T00:00:00'); // AJUSTE A DATA DO NAMORO AQUI (Ano-Mês-Dia)
+    const agora = new Date();
+    const diff = agora - dataInicio;
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / 1000 / 60) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('contador').innerHTML = 
+        `Juntos há: ${dias} dias, ${horas}h, ${minutos}m e ${segundos}s`;
+}
+
+setInterval(atualizarContador, 1000);
+atualizarContador();
