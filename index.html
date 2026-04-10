@@ -12,40 +12,92 @@
         /* CONFIGURAÇÕES GERAIS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background-color: #fdf2f2; color: #4a4a4a; overflow-x: hidden; }
-        .dancing { font-family: 'Dancing Script', cursive; }
-        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px 20px; text-align: center; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: #fdf2f2; 
+            color: #4a4a4a; 
+            overflow-x: hidden;
+            background: linear-gradient(180deg, #fce4ec 0%, #ffffff 50%, #fce4ec 100%);
+        }
+        
+        /* Efeito de Revelação Suave */
+        section { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 60px 20px; 
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        section.aparecer { opacity: 1; transform: translateY(0); }
+
+        .dancing { 
+            font-family: 'Dancing Script', cursive; 
+            background: linear-gradient(45deg, #d63384, #ff85a2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
 
         /* SEÇÃO 1 - INÍCIO */
-        #inicio { background: linear-gradient(180deg, #fce4ec 0%, #fdf2f2 100%); }
-        h1 { font-size: 2.5rem; color: #d63384; margin-bottom: 10px; }
-        #contador { font-size: 0.9rem; font-weight: 600; color: #854d68; background: #fff; padding: 15px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px; width: 100%; max-width: 350px; }
+        h1 { font-size: 3rem; margin-bottom: 10px; }
+        #contador { 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            color: #854d68; 
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px; 
+            border-radius: 50px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            margin-top: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
 
-        /* SEÇÃO 2 - CARTAS EMPILHADAS (SWIPER) */
-        #memorias { background-color: #ffffff; }
+        /* SEÇÃO 2 - CARTAS EMPILHADAS */
         .swiper { width: 300px; height: 420px; margin-top: 30px; }
         .swiper-slide { display: flex; align-items: center; justify-content: center; border-radius: 18px; }
-        .polaroid { background: white; padding: 10px 10px 25px 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; height: 100%; border: 1px solid #eee; }
+        .polaroid { 
+            background: white; 
+            padding: 10px 10px 25px 10px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            width: 100%; height: 100%; 
+            border: 1px solid #eee; 
+        }
         .polaroid img { width: 100%; height: 80%; object-fit: cover; border-radius: 5px; }
-        .polaroid p { margin-top: 15px; font-size: 1.1rem; color: #d63384; }
+        .polaroid p { margin-top: 15px; font-size: 1.2rem; }
 
-        /* VÍDEO E SPOTIFY */
-        .midia-container { margin-top: 40px; width: 100%; max-width: 400px; padding: 0 10px; }
+        /* MÍDIAS */
+        .midia-container { margin-top: 40px; width: 100%; max-width: 400px; }
         video { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 20px; }
 
-        /* SEÇÃO 3 - MOTIVOS */
-        #pote-coracao { font-size: 80px; cursor: pointer; transition: transform 0.2s; user-select: none; margin: 20px 0; }
-        #pote-coracao:active { transform: scale(0.9); }
-        #texto-motivo { font-size: 1.2rem; color: #d63384; min-height: 60px; padding: 0 20px; transition: opacity 0.3s; }
+        /* MOTIVOS */
+        #pote-coracao { font-size: 80px; cursor: pointer; transition: transform 0.2s; margin: 20px 0; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); }
+        #pote-coracao:active { transform: scale(0.8); }
+        #texto-motivo { font-size: 1.3rem; min-height: 60px; transition: opacity 0.3s; font-weight: 600; }
 
-        /* SEÇÃO PROMESSAS */
-        .lista-promessas { text-align: left; max-width: 450px; background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .lista-promessas li { font-size: 0.95rem; margin-bottom: 12px; list-style: none; border-left: 3px solid #d63384; padding-left: 10px; }
+        /* PROMESSAS E CARTA */
+        .glass-card { 
+            max-width: 500px; 
+            background: rgba(255, 255, 255, 0.6); 
+            backdrop-filter: blur(10px);
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: left;
+        }
+        .lista-promessas li { margin-bottom: 15px; list-style: none; border-left: 3px solid #d63384; padding-left: 15px; font-size: 0.95rem; }
 
-        /* FINAL */
-        .carta { max-width: 500px; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); line-height: 1.6; }
-        .assinatura { display: block; margin-top: 25px; font-size: 1.4rem; color: #d63384; cursor: pointer; text-decoration: underline dotted; }
+        /* CORAÇÕES DE FUNDO */
+        .coracao-bg { position: fixed; color: rgba(214, 51, 132, 0.15); font-size: 20px; z-index: -1; animation: flutuar 12s linear infinite; }
+        @keyframes flutuar { 0% { transform: translateY(110vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
 
+        .assinatura { display: block; margin-top: 25px; font-size: 1.4rem; cursor: pointer; text-decoration: underline dotted; }
         .seta { margin-top: 30px; font-size: 1.5rem; animation: pular 2s infinite; color: #d63384; }
         @keyframes pular { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
     </style>
@@ -53,54 +105,36 @@
 <body>
 
     <section id="inicio">
-        <h1 class="dancing">Para o meu amor, Sara</h1>
+        <h1 class="dancing">Feliz Aniversário, Sara</h1>
         <p>A nossa jornada é o meu presente diário.</p>
-        <div id="contador">Calculando...</div>
+        <div id="contador">Calculando nosso tempo...</div>
         <div class="seta">↓</div>
     </section>
 
     <section id="memorias">
-        <h2 class="dancing" style="font-size: 2.2rem; color: #d63384;">Nossa História</h2>
+        <h2 class="dancing" style="font-size: 2.5rem;">Nossa História</h2>
         <p>(Deslize as fotos para o lado ❤️)</p>
         
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="polaroid">
-                        <img src="img/01.jpeg">
-                        <p class="dancing">Em todos os detalhes, te amo....</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="polaroid">
-                        <img src="img/03.jpeg">
-                        <p class="dancing">O sorriso que me guia.</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="polaroid">
-                        <img src="img/05.jpeg">
-                        <p class="dancing">Cada detalhe com você.</p>
-                    </div>
-                </div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Onde tudo começou...</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">O seu sorriso que eu amo.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpegg"><p class="dancing">Cada detalhe com você.</p></div></div>
             </div>
         </div>
 
         <div class="midia-container">
-            <h3 class="dancing" style="color: #d63384; margin-bottom: 15px;">Um vídeo para você</h3>
-            <video controls>
-                <source src="img/video.mp4" type="video/mp4">
-                Seu navegador não suporta vídeos.
-            </video>
-<h3 class="dancing" style="color: #d63384; margin-bottom: 15px; margin-top: 30px;">Nossa Trilha Sonora</h3>
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5lvvqOEWpUvs2jaFkQTFWJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-           
+            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 40px;">Um vídeo para você</h3>
+            <video controls><source src="img/video.mp4" type="video/mp4"></video>
+
+            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 30px;">Nossa Trilha Sonora</h3>
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="http://googleusercontent.com/spotify.com/3" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="seta">↓</div>
     </section>
 
     <section id="motivos">
-        <h2 class="dancing" style="font-size: 2.2rem; color: #d63384;">Por que eu escolho você?</h2>
+        <h2 class="dancing" style="font-size: 2.5rem;">Por que eu escolho você?</h2>
         <p>Clique no coração para descobrir</p>
         <div id="pote-coracao" onclick="gerarMotivo()">❤️</div>
         <div id="texto-motivo" class="dancing"></div>
@@ -108,8 +142,8 @@
     </section>
 
     <section id="promessas">
-        <h2 class="dancing" style="font-size: 2.2rem; color: #d63384; margin-bottom: 25px;">Minhas Promessas</h2>
-        <div class="lista-promessas">
+        <h2 class="dancing" style="font-size: 2.5rem; margin-bottom: 25px;">Minhas Promessas</h2>
+        <div class="glass-card lista-promessas">
             <ul>
                 <li>✨ Prometo ser seu porto seguro nos dias de ansiedade.</li>
                 <li>✨ Prometo te ouvir com atenção após o dia mais longo.</li>
@@ -121,19 +155,18 @@
     </section>
 
     <section id="final">
-        <div class="carta">
-            <h2 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px;">Meu compromisso</h2>
-            <p>Não controlamos o futuro, mas eu controlo minha escolha de estar ao seu lado. Você é minha escolha diária, Sara.</p>
-            <p style="margin-top: 10px;">Feliz Aniversário, minha linda!</p>
-            <span class="assinatura dancing" onclick="revelarSegredo()">Com amor, Alef ❤️</span>
+        <div class="glass-card">
+            <h2 class="dancing" style="font-size: 2rem; margin-bottom: 15px; text-align: center; width: 100%;">Meu compromisso</h2>
+            <p>O tempo nos ensina que o que importa é o agora. E o meu agora é você. Feliz aniversário, minha linda!</p>
+            <span class="assinatura dancing" onclick="revelarSegredo()" style="text-align: center;">Com amor, Alef ❤️</span>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // CONTADOR (Ajuste sua data real aqui)
+        // CONTADOR
         function atualizarContador() {
-            const dataInicio = new Date(2025, 10, 26); // Ano, Mês-1, Dia
+            const dataInicio = new Date(2024, 0, 1); // AJUSTE SUA DATA AQUI
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -146,37 +179,38 @@
         atualizarContador();
 
         // SWIPER
-        var swiper = new Swiper(".mySwiper", {
-            effect: "cards",
-            grabCursor: true,
-            perSlideOffset: 10,
-            rotate: true,
-        });
+        new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
 
         // MOTIVOS
-        const motivos = [
-            "Pelo seu apoio em todos os meus desafios.",
-            "Pelo seu sorriso que muda meu dia.",
-            "Pela sua paciência e pelo seu carinho.",
-            "Porque você é minha melhor amiga e parceira.",
-            "Pela segurança que sinto ao seu lado.",
-            "Pela mulher incrível que você é.",
-            "Porque cada 'agora' é melhor com você."
-        ];
+        const motivos = ["Pelo seu apoio incondicional.", "Pelo seu sorriso que ilumina tudo.", "Pela sua paciência.", "Porque você é minha melhor parceira.", "Pela segurança do seu abraço.", "Pelo seu coração gigante."];
         function gerarMotivo() {
             const display = document.getElementById('texto-motivo');
-            const random = Math.floor(Math.random() * motivos.length);
             display.style.opacity = 0;
             setTimeout(() => {
-                display.innerText = motivos[random];
+                display.innerText = motivos[Math.floor(Math.random() * motivos.length)];
                 display.style.opacity = 1;
             }, 200);
         }
 
-        // EASTER EGG (Segredo)
-        function revelarSegredo() {
-            alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é meu presente diário, Sara.");
+        // EASTER EGG
+        function revelarSegredo() { alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é meu presente diário."); }
+
+        // CORAÇÕES E ANIMAÇÃO DE SCROLL
+        function criarCoracoes() {
+            for (let i = 0; i < 15; i++) {
+                const c = document.createElement('div');
+                c.className = 'coracao-bg'; c.innerText = '❤️';
+                c.style.left = Math.random() * 100 + 'vw';
+                c.style.animationDelay = Math.random() * 10 + 's';
+                document.body.appendChild(c);
+            }
         }
+        criarCoracoes();
+
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('aparecer'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => obs.observe(s));
     </script>
 </body>
 </html>
