@@ -18,8 +18,8 @@
 
         /* SEÇÃO 1 - INÍCIO */
         #inicio { background: linear-gradient(180deg, #fce4ec 0%, #fdf2f2 100%); }
-        h1 { font-size: 2.8rem; color: #d63384; margin-bottom: 10px; }
-        #contador { font-size: 1rem; font-weight: 600; color: #854d68; background: #fff; padding: 15px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px; width: 100%; max-width: 350px; }
+        h1 { font-size: 2.5rem; color: #d63384; margin-bottom: 10px; }
+        #contador { font-size: 0.9rem; font-weight: 600; color: #854d68; background: #fff; padding: 15px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px; width: 100%; max-width: 350px; }
 
         /* SEÇÃO 2 - CARTAS EMPILHADAS (SWIPER) */
         #memorias { background-color: #ffffff; }
@@ -29,18 +29,22 @@
         .polaroid img { width: 100%; height: 80%; object-fit: cover; border-radius: 5px; }
         .polaroid p { margin-top: 15px; font-size: 1.1rem; color: #d63384; }
 
-        /* SEÇÃO VÍDEO */
-        .video-container { margin-top: 50px; width: 100%; max-width: 400px; padding: 0 10px; }
-        video { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        /* VÍDEO E SPOTIFY */
+        .midia-container { margin-top: 40px; width: 100%; max-width: 400px; padding: 0 10px; }
+        video { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 20px; }
 
         /* SEÇÃO 3 - MOTIVOS */
         #pote-coracao { font-size: 80px; cursor: pointer; transition: transform 0.2s; user-select: none; margin: 20px 0; }
         #pote-coracao:active { transform: scale(0.9); }
-        #texto-motivo { font-size: 1.3rem; color: #d63384; min-height: 60px; padding: 0 20px; transition: opacity 0.3s; }
+        #texto-motivo { font-size: 1.2rem; color: #d63384; min-height: 60px; padding: 0 20px; transition: opacity 0.3s; }
 
-        /* SEÇÃO 4 - FINAL */
+        /* SEÇÃO PROMESSAS */
+        .lista-promessas { text-align: left; max-width: 450px; background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .lista-promessas li { font-size: 0.95rem; margin-bottom: 12px; list-style: none; border-left: 3px solid #d63384; padding-left: 10px; }
+
+        /* FINAL */
         .carta { max-width: 500px; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); line-height: 1.6; }
-        .assinatura { display: block; margin-top: 25px; font-size: 1.4rem; color: #d63384; }
+        .assinatura { display: block; margin-top: 25px; font-size: 1.4rem; color: #d63384; cursor: pointer; text-decoration: underline dotted; }
 
         .seta { margin-top: 30px; font-size: 1.5rem; animation: pular 2s infinite; color: #d63384; }
         @keyframes pular { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
@@ -50,8 +54,8 @@
 
     <section id="inicio">
         <h1 class="dancing">Para o meu amor, Sara</h1>
-        <p>A nossa jornada é o que eu tenho de mais precioso.</p>
-        <div id="contador">Calculando nosso tempo...</div>
+        <p>A nossa jornada é o meu presente diário.</p>
+        <div id="contador">Calculando...</div>
         <div class="seta">↓</div>
     </section>
 
@@ -64,30 +68,33 @@
                 <div class="swiper-slide">
                     <div class="polaroid">
                         <img src="img/01.jpeg">
-                        <p class="dancing">Em todos os detalhes, te amo...</p>
+                        <p class="dancing">Em todos os detalhes, te amo....</p>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="polaroid">
-                        <img src="img/03.jpeg">
-                        <p class="dancing">O seu sorriso que eu amo.</p>
+                        <img src="img/02.jpeg">
+                        <p class="dancing">O sorriso que me guia.</p>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="polaroid">
                         <img src="img/foto3.jpg">
-                        <p class="dancing">Cada momento é único.</p>
+                        <p class="dancing">Cada detalhe com você.</p>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
 
-        <div class="video-container">
+        <div class="midia-container">
             <h3 class="dancing" style="color: #d63384; margin-bottom: 15px;">Um vídeo para você</h3>
             <video controls>
                 <source src="img/video.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
             </video>
+
+            <h3 class="dancing" style="color: #d63384; margin-bottom: 15px; margin-top: 30px;">Nossa Trilha Sonora</h3>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E8OsS61m71876?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="seta">↓</div>
     </section>
@@ -100,20 +107,33 @@
         <div class="seta">↓</div>
     </section>
 
+    <section id="promessas">
+        <h2 class="dancing" style="font-size: 2.2rem; color: #d63384; margin-bottom: 25px;">Minhas Promessas</h2>
+        <div class="lista-promessas">
+            <ul>
+                <li>✨ Prometo ser seu porto seguro nos dias de ansiedade.</li>
+                <li>✨ Prometo te ouvir com atenção após o dia mais longo.</li>
+                <li>✨ Prometo escolher você, todos os dias, com consciência.</li>
+                <li>✨ Prometo que, em Palmas ou em qualquer lugar, meu lar é você.</li>
+            </ul>
+        </div>
+        <div class="seta">↓</div>
+    </section>
+
     <section id="final">
         <div class="carta">
             <h2 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px;">Meu compromisso</h2>
-            <p>Como aprendi, não controlamos o que está fora de nós, mas controlo minha vontade de estar ao seu lado. Você é minha escolha diária, Sara.</p>
+            <p>Não controlamos o futuro, mas eu controlo minha escolha de estar ao seu lado. Você é minha escolha diária, Sara.</p>
             <p style="margin-top: 10px;">Feliz Aniversário, minha linda!</p>
-            <span class="assinatura dancing">Com amor, Alef</span>
+            <span class="assinatura dancing" onclick="revelarSegredo()">Com amor, Alef ❤️</span>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // CONTADOR (Ajuste a data: Ano, Mês-1, Dia)
+        // CONTADOR (Ajuste sua data real aqui)
         function atualizarContador() {
-            const dataInicio = new Date(2024, 0, 1); // 0 = Janeiro, 1 = Fevereiro...
+            const dataInicio = new Date(2024, 0, 1); // Ano, Mês-1, Dia
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -125,14 +145,12 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // SWIPER (Efeito de Cartas)
+        // SWIPER
         var swiper = new Swiper(".mySwiper", {
             effect: "cards",
             grabCursor: true,
             perSlideOffset: 10,
-            perSlideRotate: 4,
             rotate: true,
-            slideShadows: true,
         });
 
         // MOTIVOS
@@ -140,10 +158,10 @@
             "Pelo seu apoio em todos os meus desafios.",
             "Pelo seu sorriso que muda meu dia.",
             "Pela sua paciência e pelo seu carinho.",
-            "Porque você é minha melhor amiga.",
+            "Porque você é minha melhor amiga e parceira.",
             "Pela segurança que sinto ao seu lado.",
-            "Pelo futuro que imagino com você.",
-            "Pelo seu coração gigante."
+            "Pela mulher incrível que você é.",
+            "Porque cada 'agora' é melhor com você."
         ];
         function gerarMotivo() {
             const display = document.getElementById('texto-motivo');
@@ -153,6 +171,11 @@
                 display.innerText = motivos[random];
                 display.style.opacity = 1;
             }, 200);
+        }
+
+        // EASTER EGG (Segredo)
+        function revelarSegredo() {
+            alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é meu presente diário, Sara.");
         }
     </script>
 </body>
