@@ -8,8 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
     <style>
-        /* CONFIGURAÇÕES GERAIS E BARRA DE ROLAGEM PERSONALIZADA */
+        /* CONFIGURAÇÕES GERAIS E BARRA DE ROLAGEM */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         
@@ -68,10 +70,7 @@
         .midia-container { margin-top: 40px; width: 100%; max-width: 400px; }
         video { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 20px; }
         
-        .spotify-glow {
-            position: relative;
-            margin-top: 10px;
-        }
+        .spotify-glow { position: relative; margin-top: 10px; }
         .spotify-glow::before {
             content: ''; position: absolute;
             top: -2px; left: -2px; right: -2px; bottom: -2px;
@@ -83,23 +82,18 @@
 
         /* MOTIVOS (CORAÇÃO BATENDO E TEXTO FIXO) */
         @keyframes batida {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.15); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
+            0%, 30%, 60% { transform: scale(1); }
+            15%, 45% { transform: scale(1.15); }
         }
         #pote-coracao { 
             font-size: 80px; cursor: pointer; margin: 20px 0; 
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15)); 
-            animation: batida 2.5s infinite;
-            display: inline-block;
+            animation: batida 2.5s infinite; display: inline-block;
         }
         #pote-coracao:active { transform: scale(0.9) !important; animation: none; }
         
         #texto-motivo { 
-            font-size: 1.3rem; 
-            min-height: 80px; /* Impede que o texto pule */
+            font-size: 1.3rem; min-height: 80px; 
             display: flex; align-items: center; justify-content: center;
             transition: opacity 0.3s ease-in-out; 
             font-weight: 600; line-height: 1.5; padding: 0 20px;
@@ -114,6 +108,15 @@
             border: 1px solid rgba(255, 255, 255, 0.3); text-align: left;
         }
         .lista-promessas li { margin-bottom: 15px; list-style: none; border-left: 3px solid #d63384; padding-left: 15px; font-size: 0.95rem; }
+
+        /* EFEITO MÁQUINA DE ESCREVER */
+        .cursor-piscando::after {
+            content: '|';
+            animation: piscar 1s infinite;
+            color: #d63384;
+            font-weight: bold;
+        }
+        @keyframes piscar { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* CORAÇÕES DE FUNDO */
         .coracao-bg { position: fixed; color: rgba(214, 51, 132, 0.15); font-size: 20px; z-index: -1; animation: flutuar 12s linear infinite; }
@@ -180,16 +183,30 @@
     <section id="final">
         <div class="glass-card">
             <h2 class="dancing" style="font-size: 2rem; margin-bottom: 15px; text-align: center; width: 100%;">Meu compromisso</h2>
-            <p>O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, minha linda!</p>
-            <span class="assinatura dancing" onclick="revelarSegredo()" style="text-align: center;">Com amor, Alef ❤️</span>
+            
+            <p id="texto-maquina" class="cursor-piscando" style="min-height: 80px;"></p>
+            
+            <span class="assinatura dancing" onclick="revelarSegredo()" style="text-align: center; margin-top: 20px;">Com amor, Alef ❤️</span>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // EXPLOSÃO DE CONFETES AO ABRIR O SITE
+        window.onload = function() {
+            setTimeout(() => {
+                confetti({
+                    particleCount: 150,
+                    spread: 100,
+                    origin: { y: 0.3 },
+                    colors: ['#d63384', '#ff85a2', '#ffffff']
+                });
+            }, 500); // Pequeno delay para a página carregar suavemente
+        };
+
         // CONTADOR
         function atualizarContador() {
-            const dataInicio = new Date(2025, 10, 23); // AJUSTE A DATA AQUI (Ano, Mês-1, Dia)
+            const dataInicio = new Date(2024, 0, 1); // AJUSTE A DATA AQUI (Ano, Mês-1, Dia)
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -204,7 +221,7 @@
         // SWIPER
         new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
 
-        // MOTIVOS COM CORREÇÃO DE SOBREPOSIÇÃO
+        // MOTIVOS 
         const motivos = [
             "Pelo seu apoio incondicional em todos os momentos.", 
             "Pelo seu sorriso que ilumina meu dia.", 
@@ -218,9 +235,7 @@
         function gerarMotivo() {
             const display = document.getElementById('texto-motivo');
             display.style.opacity = 0;
-            
             clearTimeout(timerMotivo);
-            
             timerMotivo = setTimeout(() => {
                 display.innerText = motivos[Math.floor(Math.random() * motivos.length)];
                 display.style.opacity = 1;
@@ -244,10 +259,36 @@
         }
         criarCoracoes();
 
+        // OBSERVAÇÃO DE SCROLL (FADE IN)
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('aparecer'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('section').forEach(s => obs.observe(s));
+
+        // MÁQUINA DE ESCREVER (Só digita quando chega na última seção)
+        const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, minha linda!";
+        const elementoTexto = document.getElementById('texto-maquina');
+        let indexDigitacao = 0;
+        let jaDigitou = false;
+
+        function digitarCarta() {
+            if (indexDigitacao < textoCarta.length) {
+                elementoTexto.innerHTML += textoCarta.charAt(indexDigitacao);
+                indexDigitacao++;
+                setTimeout(digitarCarta, 40); // Velocidade da digitação (40ms)
+            } else {
+                elementoTexto.classList.remove('cursor-piscando'); // Remove o cursor quando terminar
+            }
+        }
+
+        const obsCarta = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !jaDigitou) {
+                jaDigitou = true;
+                setTimeout(digitarCarta, 800); // Espera 0.8s após a seção aparecer para começar a digitar
+            }
+        }, { threshold: 0.5 }); // Só ativa quando metade do cartão estiver visível
+        obsCarta.observe(document.getElementById('final'));
+
     </script>
 </body>
 </html>
