@@ -19,7 +19,6 @@
         ::-webkit-scrollbar-thumb { background: #ff85a2; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #d63384; }
 
-        /* FUNDO DINÂMICO ANIMADO */
         body { 
             font-family: 'Montserrat', sans-serif; 
             color: #4a4a4a; 
@@ -34,7 +33,6 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* EFEITO DE REVELAÇÃO SUAVE AO SCROLL */
         section { 
             min-height: 100vh; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; 
@@ -44,7 +42,6 @@
         }
         section.aparecer { opacity: 1; transform: translateY(0); }
 
-        /* GRADIENTE DE TEXTO */
         .dancing { 
             font-family: 'Dancing Script', cursive; 
             background: linear-gradient(45deg, #d63384, #ff85a2);
@@ -53,7 +50,7 @@
             display: inline-block;
         }
 
-        /* SEÇÃO 1 - INÍCIO */
+        /* INÍCIO */
         h1 { font-size: 3rem; margin-bottom: 10px; }
         #contador { 
             font-size: 0.9rem; font-weight: 600; color: #854d68; 
@@ -61,44 +58,32 @@
             padding: 15px 20px; border-radius: 50px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
             margin-top: 20px; border: 1px solid rgba(255, 255, 255, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* SEÇÃO 2 - CARTAS EMPILHADAS (FOTOS) */
+        /* CARTAS EMPILHADAS */
         .swiper { width: 300px; height: 420px; margin-top: 30px; }
         .swiper-slide { display: flex; align-items: center; justify-content: center; border-radius: 18px; }
         .polaroid { 
             background: white; padding: 10px 10px 25px 10px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
             width: 100%; height: 100%; border: 1px solid #eee; 
-            transition: box-shadow 0.3s ease;
         }
-        .swiper-slide-active .polaroid { box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2); }
         .polaroid img { width: 100%; height: 80%; object-fit: cover; border-radius: 5px; }
         .polaroid p { margin-top: 15px; font-size: 1.2rem; }
 
-        /* CARROSSEL DE VÍDEOS */
+        /* VÍDEOS E SPOTIFY */
         .midia-container { margin-top: 40px; width: 100%; max-width: 400px; position: relative; }
         .videoSwiper { width: 100%; margin-top: 10px; padding-bottom: 40px; }
         .videoSwiper video { 
             width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;
             max-height: 70vh; object-fit: contain; 
         }
-        .videoSwiper .swiper-slide { display: flex; align-items: center; justify-content: center; }
-        .swiper-pagination-bullet-active { background: #d63384 !important; }
-
-        .videoSwiper .swiper-button-next, 
-        .videoSwiper .swiper-button-prev {
+        .videoSwiper .swiper-button-next, .videoSwiper .swiper-button-prev {
             color: #d63384; transform: scale(0.6); background: rgba(255, 255, 255, 0.9);
-            padding: 30px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            top: 45%;
+            padding: 30px; border-radius: 50%; top: 45%;
         }
-        .videoSwiper .swiper-button-next { right: 0px; }
-        .videoSwiper .swiper-button-prev { left: 0px; }
 
-        /* GLOW DO SPOTIFY */
-        .spotify-glow { position: relative; margin-top: 20px; transition: transform 0.3s ease; }
+        .spotify-glow { position: relative; margin-top: 20px; }
         .spotify-glow::before {
             content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
             background: linear-gradient(45deg, #d63384, #ff85a2);
@@ -107,86 +92,57 @@
         }
         @keyframes pulsarGlow { 0% { opacity: 0.3; } 100% { opacity: 0.7; } }
 
-        /* MOTIVOS (CORAÇÃO BATENDO) */
+        /* MOTIVOS */
         @keyframes batida { 0%, 30%, 60% { transform: scale(1); } 15%, 45% { transform: scale(1.15); } }
-        #pote-coracao { 
-            font-size: 80px; cursor: pointer; margin: 20px 0; 
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15)); 
-            animation: batida 2.5s infinite; display: inline-block;
-        }
-        #pote-coracao:active { transform: scale(0.9) !important; animation: none; }
-        #texto-motivo { 
-            font-size: 1.3rem; min-height: 80px; display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.3s ease-in-out; font-weight: 600; line-height: 1.5; padding: 0 20px;
-        }
+        #pote-coracao { font-size: 80px; cursor: pointer; animation: batida 2.5s infinite; display: inline-block; }
+        #texto-motivo { font-size: 1.3rem; min-height: 80px; display: flex; align-items: center; justify-content: center; font-weight: 600; padding: 0 20px; }
 
-        /* PROMESSAS E CARTA */
-        .glass-card { 
-            max-width: 500px; width: 90%;
-            background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px);
-            padding: 30px; border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-            border: 1px solid rgba(255, 255, 255, 0.4); text-align: left;
-        }
-        .lista-promessas li { margin-bottom: 15px; list-style: none; border-left: 3px solid #d63384; padding-left: 15px; font-size: 0.95rem; }
+        /* NUVEM DE PALAVRAS */
+        .nuvem-container { position: relative; width: 100%; max-width: 350px; height: 380px; margin: 20px auto; }
+        .palavra-flutuante { position: absolute; font-family: 'Dancing Script', cursive; opacity: 0; transform: scale(0.5); }
+        .pf-1 { top: 5%; left: 5%; font-size: 1.8rem; color: #dc3545; }
+        .pf-2 { top: 15%; right: 5%; font-size: 1.6rem; color: #0d6efd; }
+        .pf-3 { top: 30%; left: 10%; font-size: 2rem; color: #198754; }
+        .pf-4 { top: 45%; right: 10%; font-size: 1.7rem; color: #6f42c1; }
+        .pf-5 { bottom: 25%; left: 5%; font-size: 1.9rem; color: #fd7e14; }
+        .pf-6 { bottom: 10%; right: 15%; font-size: 1.8rem; color: #d63384; }
+        .pf-7 { bottom: 5%; left: 20%; font-size: 1.5rem; color: #0dcaf0; }
+        .pf-centro { top: 40%; left: 0; width: 100%; text-align: center; font-size: 4rem; color: #dc3545; font-weight: bold; }
 
-        /* NUVEM DE PALAVRAS (NOVA SEÇÃO "EU AMO") */
-        .nuvem-container {
-            position: relative;
-            width: 100%;
-            max-width: 350px;
-            height: 380px;
-            margin: 20px auto;
-        }
-        .palavra-flutuante {
-            position: absolute;
-            font-family: 'Dancing Script', cursive;
-            opacity: 0; /* Escondido inicialmente */
-            transform: scale(0.5) translateY(20px);
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        }
-        /* Posições e cores variadas estilo a imagem */
-        .pf-1 { top: 5%; left: 5%; font-size: 1.8rem; color: #dc3545; } /* Vermelho */
-        .pf-2 { top: 15%; right: 5%; font-size: 1.6rem; color: #0d6efd; } /* Azul */
-        .pf-3 { top: 30%; left: 10%; font-size: 2rem; color: #198754; } /* Verde */
-        .pf-4 { top: 45%; right: 10%; font-size: 1.7rem; color: #6f42c1; } /* Roxo */
-        .pf-5 { bottom: 25%; left: 5%; font-size: 1.9rem; color: #fd7e14; } /* Laranja */
-        .pf-6 { bottom: 10%; right: 15%; font-size: 1.8rem; color: #d63384; } /* Rosa */
-        .pf-7 { bottom: 5%; left: 20%; font-size: 1.5rem; color: #0dcaf0; } /* Ciano */
-        .pf-centro { 
-            top: 40%; left: 0; width: 100%; text-align: center; 
-            font-size: 4rem; color: #dc3545; z-index: 10; font-weight: bold;
-        }
-
-        /* Animação de Pulo (Pop In) */
         @keyframes popInPalavra {
             0% { opacity: 0; transform: scale(0.3) translateY(30px); }
-            70% { opacity: 1; transform: scale(1.1) translateY(-5px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
+        .nuvem-container.animar .palavra-flutuante { animation: popInPalavra 0.5s forwards; }
 
-        /* Classes ativadas pelo JavaScript */
-        .nuvem-container.animar .palavra-flutuante {
-            animation: popInPalavra 0.5s forwards;
+        /* SEÇÃO TRANCADA */
+        #cadeado-container {
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
+            padding: 30px; border-radius: 20px; border: 2px solid #ff85a2;
+            max-width: 350px; width: 90%;
         }
-        /* Atrasos para entrarem uma de cada vez */
-        .nuvem-container.animar .pf-1 { animation-delay: 0.2s; }
-        .nuvem-container.animar .pf-2 { animation-delay: 0.6s; }
-        .nuvem-container.animar .pf-3 { animation-delay: 1.0s; }
-        .nuvem-container.animar .pf-4 { animation-delay: 1.4s; }
-        .nuvem-container.animar .pf-5 { animation-delay: 1.8s; }
-        .nuvem-container.animar .pf-6 { animation-delay: 2.2s; }
-        .nuvem-container.animar .pf-7 { animation-delay: 2.6s; }
-        .nuvem-container.animar .pf-centro { animation-delay: 3.5s; } /* O "VOCÊ" entra por último */
+        #senha-input {
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd;
+            margin: 15px 0; outline: none; text-align: center; font-family: 'Montserrat', sans-serif;
+        }
+        #btn-desbloquear {
+            background: #d63384; color: white; border: none; padding: 10px 25px;
+            border-radius: 50px; cursor: pointer; font-weight: 600; transition: 0.3s;
+        }
+        #btn-desbloquear:hover { background: #ff85a2; }
 
-        /* MÁQUINA DE ESCREVER */
+        /* FINAL (ESCONDIDO INICIALMENTE) */
+        #final { display: none; }
+        .glass-card { 
+            max-width: 500px; width: 90%; background: rgba(255, 255, 255, 0.65); 
+            backdrop-filter: blur(12px); padding: 30px; border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(255, 255, 255, 0.4); text-align: left;
+        }
         .cursor-piscando::after { content: '|'; animation: piscar 1s infinite; color: #d63384; font-weight: bold; }
         @keyframes piscar { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* CORAÇÕES DE FUNDO */
         .coracao-bg { position: fixed; color: rgba(214, 51, 132, 0.15); font-size: 20px; z-index: -1; animation: flutuar 12s linear infinite; pointer-events: none; }
         @keyframes flutuar { 0% { transform: translateY(110vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
-
         .assinatura { display: block; margin-top: 25px; font-size: 1.4rem; cursor: pointer; text-decoration: underline dotted; }
         .seta { margin-top: 30px; font-size: 1.5rem; animation: pular 2s infinite; color: #d63384; }
         @keyframes pular { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
@@ -197,40 +153,35 @@
     <section id="inicio">
         <h1 class="dancing">Feliz Aniversário, Sara</h1>
         <p>A nossa jornada é o meu presente diário.</p>
-        <div id="contador">Calculando nosso tempo...</div>
+        <div id="contador">Calculando...</div>
         <div class="seta">↓</div>
     </section>
 
     <section id="memorias">
         <h2 class="dancing" style="font-size: 2.5rem;">Nossa História</h2>
-        <p style="margin-bottom: 20px;">(Deslize as fotos para o lado ❤️)</p>
-        
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em todos os detalhes, te amo...</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em cada detalhe. te amo...</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">O seu sorriso que eu amo.</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
-                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que parmaneça sempre assim, com muito amor.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que permaneça sempre assim, com muito amor.</p></div></div>
 
             </div>
         </div>
-
         <div class="midia-container">
-            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 10px; margin-top: 40px;">Nossos Momentos</h3>
+            <h3 class="dancing" style="font-size: 1.8rem; margin-top: 40px;">Nossos Momentos</h3>
             <div class="swiper videoSwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><video controls><source src="img/v1.mp4" type="video/mp4"></video></div>
-                    <div class="swiper-slide"><video controls><source src="img/v2.mp4" type="video/mp4"></video></div>
-                    <div class="swiper-slide"><video controls><source src="img/v3.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls><source src="img/01.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls><source src="img/02.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls><source src="img/03.mp4" type="video/mp4"></video></div>
 
                 </div>
                 <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
             </div>
-
-            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 20px;">A música que me lembra você</h3>
             <div class="spotify-glow">
-                <iframe data-testid="embed-iframe" style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/track/5lvvqOEWpUvs2jaFkQTFWJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/track/5lvvqOEWpUvs2jaFkQTFWJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </div>
         <div class="seta">↓</div>
@@ -238,28 +189,13 @@
 
     <section id="motivos">
         <h2 class="dancing" style="font-size: 2.5rem;">Por que eu escolho você?</h2>
-        <p>Clique no coração para descobrir</p>
         <div id="pote-coracao" onclick="gerarMotivo()">❤️</div>
         <div id="texto-motivo" class="dancing"></div>
         <div class="seta">↓</div>
     </section>
 
-    <section id="promessas">
-        <h2 class="dancing" style="font-size: 2.5rem; margin-bottom: 25px;">Minhas Promessas</h2>
-        <div class="glass-card lista-promessas">
-            <ul>
-                <li> Prometo ser seu porto seguro nos dias de ansiedade.</li>
-                <li> Prometo te ouvir com atenção após o dia mais longo.</li>
-                <li> Prometo escolher você, todos os dias, com consciência.</li>
-                <li> Prometo que meu lar é você, não importa onde estejamos.</li>
-            </ul>
-        </div>
-        <div class="seta">↓</div>
-    </section>
-
     <section id="secao-nuvem">
         <h2 class="dancing" style="font-size: 3rem; margin-bottom: 10px;">Eu amo...</h2>
-        
         <div class="nuvem-container" id="nuvem-palavras">
             <span class="palavra-flutuante pf-1">seu sorriso</span>
             <span class="palavra-flutuante pf-2">teu beijo</span>
@@ -270,7 +206,16 @@
             <span class="palavra-flutuante pf-7">sua voz</span>
             <span class="palavra-flutuante pf-centro">você.</span>
         </div>
-        <div class="seta" style="margin-top: 10px;">↓</div>
+        <div class="seta">↓</div>
+    </section>
+
+    <section id="secao-trancada">
+        <div id="cadeado-container">
+            <h2 class="dancing" style="font-size: 1.8rem; color: #d63384;">Um detalhe só nosso...</h2>
+            <p style="font-size: 0.9rem; margin-top: 10px;">Qual foi o lugar do nosso primeiro beijo?</p>
+            <input type="text" id="senha-input" placeholder="Digite aqui...">
+            <button id="btn-desbloquear" onclick="verificarSenha()">Abrir meu coração</button>
+        </div>
     </section>
 
     <section id="final">
@@ -283,19 +228,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // EXPLOSÃO DE CONFETES
+        // CONFIGURAÇÕES
+        const respostaCerta = "TRABALHO"; // <--- MUDE A SENHA AQUI
+
         window.onload = function() {
-            setTimeout(() => {
-                confetti({
-                    particleCount: 150, spread: 100, origin: { y: 0.3 },
-                    colors: ['#d63384', '#ff85a2', '#ffffff']
-                });
-            }, 500);
+            setTimeout(() => { confetti({ particleCount: 150, spread: 100, origin: { y: 0.3 }, colors: ['#d63384', '#ff85a2', '#ffffff'] }); }, 500);
         };
 
-        // CONTADOR
         function atualizarContador() {
-            const dataInicio = new Date(2024, 0, 1); 
+            const dataInicio = new Date(2025, 10, 23); 
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -307,87 +248,55 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // SWIPERS
         new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
-        new Swiper(".videoSwiper", { 
-            effect: "slide", grabCursor: true, autoHeight: true, spaceBetween: 20,
-            pagination: { el: ".swiper-pagination", dynamicBullets: true },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
-        });
+        new Swiper(".videoSwiper", { effect: "slide", grabCursor: true, autoHeight: true, spaceBetween: 20, pagination: { el: ".swiper-pagination", dynamicBullets: true }, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } });
 
-        // MOTIVOS 
-        const motivos = [
-            "Pelo seu apoio incondicional em todos os momentos.", 
-            "Pelo seu sorriso que ilumina meu dia.", 
-            "Pela sua paciência admirável.", 
-            "Porque você é minha melhor amiga e parceira.", 
-            "Pela paz que eu sinto dentro do seu abraço.", 
-            "Pelo seu coração lindo e gigante."
-        ];
+        const motivos = ["Pelo seu apoio incondicional.", "Pelo seu sorriso que ilumina meu dia.", "Pela sua paciência admirável.", "Porque você é minha melhor amiga.", "Pela paz dentro do seu abraço.", "Pelo seu coração lindo."];
         let timerMotivo;
         function gerarMotivo() {
             const display = document.getElementById('texto-motivo');
             display.style.opacity = 0;
             clearTimeout(timerMotivo);
-            timerMotivo = setTimeout(() => {
-                display.innerText = motivos[Math.floor(Math.random() * motivos.length)];
-                display.style.opacity = 1;
-            }, 300);
+            timerMotivo = setTimeout(() => { display.innerText = motivos[Math.floor(Math.random() * motivos.length)]; display.style.opacity = 1; }, 300);
         }
 
-        // EASTER EGG
-        function revelarSegredo() { alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é minha escolha diária."); }
-
-        // CORAÇÕES
-        function criarCoracoes() {
-            for (let i = 0; i < 15; i++) {
-                const c = document.createElement('div');
-                c.className = 'coracao-bg'; c.innerText = '❤️';
-                c.style.left = Math.random() * 100 + 'vw';
-                c.style.animationDelay = Math.random() * 10 + 's';
-                document.body.appendChild(c);
+        function verificarSenha() {
+            const entrada = document.getElementById('senha-input').value.trim().toUpperCase();
+            if (entrada === respostaCerta.toUpperCase()) {
+                document.getElementById('secao-trancada').style.display = 'none';
+                const final = document.getElementById('final');
+                final.style.display = 'flex';
+                setTimeout(() => { 
+                    final.classList.add('aparecer');
+                    digitarCarta();
+                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                }, 100);
+            } else {
+                alert("Essa ainda não é a resposta certa... Tente de novo, amor! ❤️");
             }
         }
-        criarCoracoes();
 
-        // FADE IN GERAL
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('aparecer'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('section').forEach(s => obs.observe(s));
-
-        // ATIVAÇÃO DA NUVEM DE PALAVRAS (Trend do "Eu Amo")
-        const obsNuvem = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                document.getElementById('nuvem-palavras').classList.add('animar');
-            }
-        }, { threshold: 0.5 });
-        obsNuvem.observe(document.getElementById('secao-nuvem'));
-
-        // MÁQUINA DE ESCREVER
         const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, minha linda!";
         const elementoTexto = document.getElementById('texto-maquina');
         let indexDigitacao = 0;
-        let jaDigitou = false;
-
         function digitarCarta() {
             if (indexDigitacao < textoCarta.length) {
                 elementoTexto.innerHTML += textoCarta.charAt(indexDigitacao);
                 indexDigitacao++;
                 setTimeout(digitarCarta, 40);
-            } else {
-                elementoTexto.classList.remove('cursor-piscando');
-            }
+            } else { elementoTexto.classList.remove('cursor-piscando'); }
         }
 
-        const obsCarta = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !jaDigitou) {
-                jaDigitou = true;
-                setTimeout(digitarCarta, 800);
-            }
-        }, { threshold: 0.5 });
-        obsCarta.observe(document.getElementById('final'));
+        function criarCoracoes() { for (let i = 0; i < 15; i++) { const c = document.createElement('div'); c.className = 'coracao-bg'; c.innerText = '❤️'; c.style.left = Math.random() * 100 + 'vw'; c.style.animationDelay = Math.random() * 10 + 's'; document.body.appendChild(c); } }
+        criarCoracoes();
 
+        const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('aparecer'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => { if(s.id !== 'final') obs.observe(s); });
+
+        const obsNuvem = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) document.getElementById('nuvem-palavras').classList.add('animar'); }, { threshold: 0.5 });
+        obsNuvem.observe(document.getElementById('secao-nuvem'));
+
+        function revelarSegredo() { alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é minha escolha diária."); }
     </script>
 </body>
 </html>
