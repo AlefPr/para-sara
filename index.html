@@ -80,10 +80,10 @@
         }
         .videoSwiper .swiper-button-next, .videoSwiper .swiper-button-prev {
             color: #d63384; transform: scale(0.6); background: rgba(255, 255, 255, 0.9);
-            padding: 30px; border-radius: 50%; top: 45%;
+            padding: 30px; border-radius: 50%; top: 45%; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        .spotify-glow { position: relative; margin-top: 20px; }
+        .spotify-glow { position: relative; margin-top: 10px; }
         .spotify-glow::before {
             content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
             background: linear-gradient(45deg, #d63384, #ff85a2);
@@ -94,12 +94,13 @@
 
         /* MOTIVOS */
         @keyframes batida { 0%, 30%, 60% { transform: scale(1); } 15%, 45% { transform: scale(1.15); } }
-        #pote-coracao { font-size: 80px; cursor: pointer; animation: batida 2.5s infinite; display: inline-block; }
-        #texto-motivo { font-size: 1.3rem; min-height: 80px; display: flex; align-items: center; justify-content: center; font-weight: 600; padding: 0 20px; }
+        #pote-coracao { font-size: 80px; cursor: pointer; animation: batida 2.5s infinite; display: inline-block; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15)); }
+        #pote-coracao:active { transform: scale(0.9) !important; animation: none; }
+        #texto-motivo { font-size: 1.3rem; min-height: 80px; display: flex; align-items: center; justify-content: center; font-weight: 600; padding: 0 20px; transition: opacity 0.3s ease-in-out; }
 
         /* NUVEM DE PALAVRAS */
         .nuvem-container { position: relative; width: 100%; max-width: 350px; height: 380px; margin: 20px auto; }
-        .palavra-flutuante { position: absolute; font-family: 'Dancing Script', cursive; opacity: 0; transform: scale(0.5); }
+        .palavra-flutuante { position: absolute; font-family: 'Dancing Script', cursive; opacity: 0; transform: scale(0.5); text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
         .pf-1 { top: 5%; left: 5%; font-size: 1.8rem; color: #dc3545; }
         .pf-2 { top: 15%; right: 5%; font-size: 1.6rem; color: #0d6efd; }
         .pf-3 { top: 30%; left: 10%; font-size: 2rem; color: #198754; }
@@ -111,11 +112,27 @@
 
         @keyframes popInPalavra {
             0% { opacity: 0; transform: scale(0.3) translateY(30px); }
+            70% { opacity: 1; transform: scale(1.1) translateY(-5px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         .nuvem-container.animar .palavra-flutuante { animation: popInPalavra 0.5s forwards; }
+        .nuvem-container.animar .pf-1 { animation-delay: 0.2s; }
+        .nuvem-container.animar .pf-2 { animation-delay: 0.6s; }
+        .nuvem-container.animar .pf-3 { animation-delay: 1.0s; }
+        .nuvem-container.animar .pf-4 { animation-delay: 1.4s; }
+        .nuvem-container.animar .pf-5 { animation-delay: 1.8s; }
+        .nuvem-container.animar .pf-6 { animation-delay: 2.2s; }
+        .nuvem-container.animar .pf-7 { animation-delay: 2.6s; }
+        .nuvem-container.animar .pf-centro { animation-delay: 3.5s; }
 
-        /* SEÇÃO TRANCADA */
+        /* SEÇÃO TRANCADA E PROMESSAS */
+        .glass-card { 
+            max-width: 500px; width: 90%; background: rgba(255, 255, 255, 0.65); 
+            backdrop-filter: blur(12px); padding: 30px; border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(255, 255, 255, 0.4); text-align: left;
+        }
+        .lista-promessas li { margin-bottom: 15px; list-style: none; border-left: 3px solid #d63384; padding-left: 15px; font-size: 0.95rem; }
+
         #cadeado-container {
             background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
             padding: 30px; border-radius: 20px; border: 2px solid #ff85a2;
@@ -133,11 +150,7 @@
 
         /* FINAL (ESCONDIDO INICIALMENTE) */
         #final { display: none; }
-        .glass-card { 
-            max-width: 500px; width: 90%; background: rgba(255, 255, 255, 0.65); 
-            backdrop-filter: blur(12px); padding: 30px; border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(255, 255, 255, 0.4); text-align: left;
-        }
+        
         .cursor-piscando::after { content: '|'; animation: piscar 1s infinite; color: #d63384; font-weight: bold; }
         @keyframes piscar { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
@@ -161,15 +174,16 @@
         <h2 class="dancing" style="font-size: 2.5rem;">Nossa História</h2>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em cada detalhe. te amo...</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em todos os detalhes, amo você...</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">O seu sorriso que eu amo.</p></div></div>
-                <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
-                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que permaneça sempre assim, com muito amor.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpegg"><p class="dancing">Cada detalhe com você.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que parmaneça sempre assim, com muito amor.</p></div></div>
 
             </div>
         </div>
+        
         <div class="midia-container">
-            <h3 class="dancing" style="font-size: 1.8rem; margin-top: 40px;">Nossos Momentos</h3>
+            <h3 class="dancing" style="font-size: 1.8rem; margin-top: 40px; margin-bottom: 10px;">Nossos Momentos</h3>
             <div class="swiper videoSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><video controls><source src="img/01.mp4" type="video/mp4"></video></div>
@@ -180,6 +194,8 @@
                 <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
             </div>
+            
+            <h3 class="dancing" style="font-size: 1.8rem; margin-top: 30px; margin-bottom: 15px;">A música que me lembra você</h3>
             <div class="spotify-glow">
                 <iframe style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/track/5lvvqOEWpUvs2jaFkQTFWJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
@@ -191,6 +207,19 @@
         <h2 class="dancing" style="font-size: 2.5rem;">Por que eu escolho você?</h2>
         <div id="pote-coracao" onclick="gerarMotivo()">❤️</div>
         <div id="texto-motivo" class="dancing"></div>
+        <div class="seta">↓</div>
+    </section>
+
+    <section id="promessas">
+        <h2 class="dancing" style="font-size: 2.5rem; margin-bottom: 25px;">Minhas Promessas</h2>
+        <div class="glass-card lista-promessas">
+            <ul>
+                <li>✨ Prometo ser seu porto seguro nos dias de ansiedade.</li>
+                <li>✨ Prometo te ouvir com atenção após o dia mais longo.</li>
+                <li>✨ Prometo escolher você, todos os dias, com consciência.</li>
+                <li>✨ Prometo que meu lar é você, não importa onde estejamos.</li>
+            </ul>
+        </div>
         <div class="seta">↓</div>
     </section>
 
@@ -206,7 +235,7 @@
             <span class="palavra-flutuante pf-7">sua voz</span>
             <span class="palavra-flutuante pf-centro">você.</span>
         </div>
-        <div class="seta">↓</div>
+        <div class="seta" style="margin-top: 10px;">↓</div>
     </section>
 
     <section id="secao-trancada">
@@ -228,15 +257,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // CONFIGURAÇÕES
-        const respostaCerta = "TRABALHO"; // <--- MUDE A SENHA AQUI
+        // CONFIGURAÇÃO DA SENHA
+        const respostaCerta = "trabalho"; // <--- MUDE A SENHA AQUI
 
         window.onload = function() {
             setTimeout(() => { confetti({ particleCount: 150, spread: 100, origin: { y: 0.3 }, colors: ['#d63384', '#ff85a2', '#ffffff'] }); }, 500);
         };
 
         function atualizarContador() {
-            const dataInicio = new Date(2025, 10, 23); 
+            const dataInicio = new Date(2025, 10, 23); // Ano, Mês-1, Dia
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -251,13 +280,39 @@
         new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
         new Swiper(".videoSwiper", { effect: "slide", grabCursor: true, autoHeight: true, spaceBetween: 20, pagination: { el: ".swiper-pagination", dynamicBullets: true }, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } });
 
-        const motivos = ["Pelo seu apoio incondicional.", "Pelo seu sorriso que ilumina meu dia.", "Pela sua paciência admirável.", "Porque você é minha melhor amiga.", "Pela paz dentro do seu abraço.", "Pelo seu coração lindo."];
+        // LOGICA DE MOTIVOS SEM REPETIÇÃO
+        const motivosOriginais = [
+            "Pelo seu apoio incondicional em todos os momentos.", 
+            "Pelo seu sorriso que ilumina meu dia.", 
+            "Pela sua paciência admirável.", 
+            "Porque você é minha melhor amiga e parceira.", 
+            "Pela paz que eu sinto dentro do seu abraço.", 
+            "Pelo seu coração lindo e gigante."
+        ];
+        let motivosDisponiveis = [...motivosOriginais];
         let timerMotivo;
+
         function gerarMotivo() {
             const display = document.getElementById('texto-motivo');
             display.style.opacity = 0;
             clearTimeout(timerMotivo);
-            timerMotivo = setTimeout(() => { display.innerText = motivos[Math.floor(Math.random() * motivos.length)]; display.style.opacity = 1; }, 300);
+            
+            timerMotivo = setTimeout(() => { 
+                // Se acabaram as opções, recarrega a lista
+                if (motivosDisponiveis.length === 0) {
+                    motivosDisponiveis = [...motivosOriginais];
+                }
+
+                // Sorteia um índice dentro dos disponíveis
+                const randomIndex = Math.floor(Math.random() * motivosDisponiveis.length);
+                const motivoEscolhido = motivosDisponiveis[randomIndex];
+
+                // Remove o motivo escolhido para não repetir nesta rodada
+                motivosDisponiveis.splice(randomIndex, 1);
+
+                display.innerText = motivoEscolhido; 
+                display.style.opacity = 1; 
+            }, 300);
         }
 
         function verificarSenha() {
