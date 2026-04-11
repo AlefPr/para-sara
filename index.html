@@ -19,7 +19,7 @@
         ::-webkit-scrollbar-thumb { background: #ff85a2; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #d63384; }
 
-        /* FUNDO DINÂMICO ANIMADO (Pôr do Sol Suave) */
+        /* FUNDO DINÂMICO ANIMADO */
         body { 
             font-family: 'Montserrat', sans-serif; 
             color: #4a4a4a; 
@@ -63,7 +63,6 @@
             margin-top: 20px; border: 1px solid rgba(255, 255, 255, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        #contador:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(214, 51, 132, 0.15); }
 
         /* SEÇÃO 2 - CARTAS EMPILHADAS (FOTOS) */
         .swiper { width: 300px; height: 420px; margin-top: 30px; }
@@ -80,37 +79,28 @@
 
         /* CARROSSEL DE VÍDEOS */
         .midia-container { margin-top: 40px; width: 100%; max-width: 400px; position: relative; }
-        
         .videoSwiper { width: 100%; margin-top: 10px; padding-bottom: 40px; }
         .videoSwiper video { 
             width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
             transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;
-            max-height: 70vh; 
-            object-fit: contain; 
+            max-height: 70vh; object-fit: contain; 
         }
         .videoSwiper .swiper-slide { display: flex; align-items: center; justify-content: center; }
         .swiper-pagination-bullet-active { background: #d63384 !important; }
 
-        /* SETAS DOS VÍDEOS */
         .videoSwiper .swiper-button-next, 
         .videoSwiper .swiper-button-prev {
-            color: #d63384;
-            transform: scale(0.6);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            top: 45%; /* Ajuste fino de altura */
+            color: #d63384; transform: scale(0.6); background: rgba(255, 255, 255, 0.9);
+            padding: 30px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            top: 45%;
         }
         .videoSwiper .swiper-button-next { right: 0px; }
         .videoSwiper .swiper-button-prev { left: 0px; }
 
         /* GLOW DO SPOTIFY */
         .spotify-glow { position: relative; margin-top: 20px; transition: transform 0.3s ease; }
-        .spotify-glow:hover { transform: scale(1.02); }
         .spotify-glow::before {
-            content: ''; position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
             background: linear-gradient(45deg, #d63384, #ff85a2);
             z-index: -1; filter: blur(14px); border-radius: 15px;
             animation: pulsarGlow 3s infinite alternate;
@@ -118,22 +108,16 @@
         @keyframes pulsarGlow { 0% { opacity: 0.3; } 100% { opacity: 0.7; } }
 
         /* MOTIVOS (CORAÇÃO BATENDO) */
-        @keyframes batida {
-            0%, 30%, 60% { transform: scale(1); }
-            15%, 45% { transform: scale(1.15); }
-        }
+        @keyframes batida { 0%, 30%, 60% { transform: scale(1); } 15%, 45% { transform: scale(1.15); } }
         #pote-coracao { 
             font-size: 80px; cursor: pointer; margin: 20px 0; 
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15)); 
             animation: batida 2.5s infinite; display: inline-block;
         }
         #pote-coracao:active { transform: scale(0.9) !important; animation: none; }
-        
         #texto-motivo { 
-            font-size: 1.3rem; min-height: 80px; 
-            display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.3s ease-in-out; 
-            font-weight: 600; line-height: 1.5; padding: 0 20px;
+            font-size: 1.3rem; min-height: 80px; display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.3s ease-in-out; font-weight: 600; line-height: 1.5; padding: 0 20px;
         }
 
         /* PROMESSAS E CARTA */
@@ -143,15 +127,60 @@
             padding: 30px; border-radius: 20px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
             border: 1px solid rgba(255, 255, 255, 0.4); text-align: left;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        .glass-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(214, 51, 132, 0.1); }
         .lista-promessas li { margin-bottom: 15px; list-style: none; border-left: 3px solid #d63384; padding-left: 15px; font-size: 0.95rem; }
 
-        /* MÁQUINA DE ESCREVER */
-        .cursor-piscando::after {
-            content: '|'; animation: piscar 1s infinite; color: #d63384; font-weight: bold;
+        /* NUVEM DE PALAVRAS (NOVA SEÇÃO "EU AMO") */
+        .nuvem-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            height: 380px;
+            margin: 20px auto;
         }
+        .palavra-flutuante {
+            position: absolute;
+            font-family: 'Dancing Script', cursive;
+            opacity: 0; /* Escondido inicialmente */
+            transform: scale(0.5) translateY(20px);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        /* Posições e cores variadas estilo a imagem */
+        .pf-1 { top: 5%; left: 5%; font-size: 1.8rem; color: #dc3545; } /* Vermelho */
+        .pf-2 { top: 15%; right: 5%; font-size: 1.6rem; color: #0d6efd; } /* Azul */
+        .pf-3 { top: 30%; left: 10%; font-size: 2rem; color: #198754; } /* Verde */
+        .pf-4 { top: 45%; right: 10%; font-size: 1.7rem; color: #6f42c1; } /* Roxo */
+        .pf-5 { bottom: 25%; left: 5%; font-size: 1.9rem; color: #fd7e14; } /* Laranja */
+        .pf-6 { bottom: 10%; right: 15%; font-size: 1.8rem; color: #d63384; } /* Rosa */
+        .pf-7 { bottom: 5%; left: 20%; font-size: 1.5rem; color: #0dcaf0; } /* Ciano */
+        .pf-centro { 
+            top: 40%; left: 0; width: 100%; text-align: center; 
+            font-size: 4rem; color: #dc3545; z-index: 10; font-weight: bold;
+        }
+
+        /* Animação de Pulo (Pop In) */
+        @keyframes popInPalavra {
+            0% { opacity: 0; transform: scale(0.3) translateY(30px); }
+            70% { opacity: 1; transform: scale(1.1) translateY(-5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Classes ativadas pelo JavaScript */
+        .nuvem-container.animar .palavra-flutuante {
+            animation: popInPalavra 0.5s forwards;
+        }
+        /* Atrasos para entrarem uma de cada vez */
+        .nuvem-container.animar .pf-1 { animation-delay: 0.2s; }
+        .nuvem-container.animar .pf-2 { animation-delay: 0.6s; }
+        .nuvem-container.animar .pf-3 { animation-delay: 1.0s; }
+        .nuvem-container.animar .pf-4 { animation-delay: 1.4s; }
+        .nuvem-container.animar .pf-5 { animation-delay: 1.8s; }
+        .nuvem-container.animar .pf-6 { animation-delay: 2.2s; }
+        .nuvem-container.animar .pf-7 { animation-delay: 2.6s; }
+        .nuvem-container.animar .pf-centro { animation-delay: 3.5s; } /* O "VOCÊ" entra por último */
+
+        /* MÁQUINA DE ESCREVER */
+        .cursor-piscando::after { content: '|'; animation: piscar 1s infinite; color: #d63384; font-weight: bold; }
         @keyframes piscar { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* CORAÇÕES DE FUNDO */
@@ -181,32 +210,25 @@
                 <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em todos os detalhes, te amo...</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">O seu sorriso que eu amo.</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
-                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que permaneça sempre assim, com muito amor.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que parmaneça sempre assim, com muito amor.</p></div></div>
 
             </div>
         </div>
 
         <div class="midia-container">
-            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 40px;">Nossos Momentos</h3>
-            
+            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 10px; margin-top: 40px;">Nossos Momentos</h3>
             <div class="swiper videoSwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <video controls><source src="img/v1.mp4" type="video/mp4"></video>
-                    </div>
-                    <div class="swiper-slide">
-                        <video controls><source src="img/v2.mp4" type="video/mp4"></video>
-                    </div>
-                      <div class="swiper-slide">
-                        <video controls><source src="img/v3.mp4" type="video/mp4"></video>
-                    </div>
+                    <div class="swiper-slide"><video controls><source src="img/v1.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls><source src="img/v2.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls><source src="img/v3.mp4" type="video/mp4"></video></div>
+
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
             </div>
 
-            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 20px;">Nossa Trilha Sonora</h3>
+            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 20px;">A música que me lembra você</h3>
             <div class="spotify-glow">
                 <iframe data-testid="embed-iframe" style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/track/5lvvqOEWpUvs2jaFkQTFWJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
@@ -226,13 +248,29 @@
         <h2 class="dancing" style="font-size: 2.5rem; margin-bottom: 25px;">Minhas Promessas</h2>
         <div class="glass-card lista-promessas">
             <ul>
-                <li>✨ Prometo ser seu porto seguro nos dias de ansiedade.</li>
-                <li>✨ Prometo te ouvir com atenção após o dia mais longo.</li>
-                <li>✨ Prometo escolher você, todos os dias, com consciência.</li>
-                <li>✨ Prometo que meu lar é você, não importa onde estejamos.</li>
+                <li> Prometo ser seu porto seguro nos dias de ansiedade.</li>
+                <li> Prometo te ouvir com atenção após o dia mais longo.</li>
+                <li> Prometo escolher você, todos os dias, com consciência.</li>
+                <li> Prometo que meu lar é você, não importa onde estejamos.</li>
             </ul>
         </div>
         <div class="seta">↓</div>
+    </section>
+
+    <section id="secao-nuvem">
+        <h2 class="dancing" style="font-size: 3rem; margin-bottom: 10px;">Eu amo...</h2>
+        
+        <div class="nuvem-container" id="nuvem-palavras">
+            <span class="palavra-flutuante pf-1">seu sorriso</span>
+            <span class="palavra-flutuante pf-2">teu beijo</span>
+            <span class="palavra-flutuante pf-3">seu abraço</span>
+            <span class="palavra-flutuante pf-4">teu cabelo</span>
+            <span class="palavra-flutuante pf-5">seu cheiro</span>
+            <span class="palavra-flutuante pf-6">seus olhos</span>
+            <span class="palavra-flutuante pf-7">sua voz</span>
+            <span class="palavra-flutuante pf-centro">você.</span>
+        </div>
+        <div class="seta" style="margin-top: 10px;">↓</div>
     </section>
 
     <section id="final">
@@ -255,9 +293,9 @@
             }, 500);
         };
 
-        // CONTADOR (Lembre de ajustar a data real de vocês aqui!)
+        // CONTADOR
         function atualizarContador() {
-            const dataInicio = new Date(2024, 0, 1); // Ano, Mês-1, Dia
+            const dataInicio = new Date(2024, 0, 1); 
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -269,15 +307,10 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // SWIPER FOTOS
+        // SWIPERS
         new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
-
-        // SWIPER VÍDEOS (Com Setas e AutoHeight)
         new Swiper(".videoSwiper", { 
-            effect: "slide", 
-            grabCursor: true,
-            autoHeight: true, // Aproxima o restante do site
-            spaceBetween: 20,
+            effect: "slide", grabCursor: true, autoHeight: true, spaceBetween: 20,
             pagination: { el: ".swiper-pagination", dynamicBullets: true },
             navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
         });
@@ -303,11 +336,9 @@
         }
 
         // EASTER EGG
-        function revelarSegredo() { 
-            alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é minha escolha diária."); 
-        }
+        function revelarSegredo() { alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é minha escolha diária."); }
 
-        // CORAÇÕES FLUTUANTES
+        // CORAÇÕES
         function criarCoracoes() {
             for (let i = 0; i < 15; i++) {
                 const c = document.createElement('div');
@@ -319,11 +350,19 @@
         }
         criarCoracoes();
 
-        // FADE IN AO DESCER O SITE
+        // FADE IN GERAL
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('aparecer'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('section').forEach(s => obs.observe(s));
+
+        // ATIVAÇÃO DA NUVEM DE PALAVRAS (Trend do "Eu Amo")
+        const obsNuvem = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                document.getElementById('nuvem-palavras').classList.add('animar');
+            }
+        }, { threshold: 0.5 });
+        obsNuvem.observe(document.getElementById('secao-nuvem'));
 
         // MÁQUINA DE ESCREVER
         const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, minha linda!";
