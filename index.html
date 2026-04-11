@@ -39,6 +39,7 @@
             padding: 60px 20px; text-align: center;
             opacity: 0; transform: translateY(40px);
             transition: opacity 1s ease-out, transform 1s ease-out;
+            position: relative; z-index: 2;
         }
         section.aparecer { opacity: 1; transform: translateY(0); }
 
@@ -148,13 +149,21 @@
         }
         #btn-desbloquear:hover { background: #ff85a2; }
 
-        /* FINAL (ESCONDIDO INICIALMENTE) */
-        #final { display: none; }
+        /* EFEITO CINEMA (CORTINA ESCURA) */
+        #overlay-escuro {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.85); z-index: 998; opacity: 0; pointer-events: none;
+            transition: opacity 2s ease-in-out;
+        }
+        #overlay-escuro.ativo { opacity: 1; pointer-events: all; }
+
+        /* FINAL (ESCONDIDO INICIALMENTE, ACIMA DO ESCURO) */
+        #final { display: none; position: relative; z-index: 999; }
         
         .cursor-piscando::after { content: '|'; animation: piscar 1s infinite; color: #d63384; font-weight: bold; }
         @keyframes piscar { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .coracao-bg { position: fixed; color: rgba(214, 51, 132, 0.15); font-size: 20px; z-index: -1; animation: flutuar 12s linear infinite; pointer-events: none; }
+        .coracao-bg { position: fixed; color: rgba(214, 51, 132, 0.15); font-size: 20px; z-index: 1; animation: flutuar 12s linear infinite; pointer-events: none; }
         @keyframes flutuar { 0% { transform: translateY(110vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
         .assinatura { display: block; margin-top: 25px; font-size: 1.4rem; cursor: pointer; text-decoration: underline dotted; }
         .seta { margin-top: 30px; font-size: 1.5rem; animation: pular 2s infinite; color: #d63384; }
@@ -162,6 +171,8 @@
     </style>
 </head>
 <body>
+
+    <div id="overlay-escuro"></div>
 
     <section id="inicio">
         <h1 class="dancing">Feliz Aniversário, Sara</h1>
@@ -172,12 +183,14 @@
 
     <section id="memorias">
         <h2 class="dancing" style="font-size: 2.5rem;">Nossa História</h2>
+        <p style="margin-bottom: 20px;">(Deslize as fotos para o lado ❤️)</p>
+        
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em todos os detalhes, amo você...</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">O seu sorriso que eu amo.</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
-                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que parmaneça sempre assim, com muito amor.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpeg"><p class="dancing">Que permaneça assim, com muito amor.</p></div></div>
 
             </div>
         </div>
@@ -186,10 +199,9 @@
             <h3 class="dancing" style="font-size: 1.8rem; margin-top: 40px; margin-bottom: 10px;">Nossos Momentos</h3>
             <div class="swiper videoSwiper">
                 <div class="swiper-wrapper">
-                   <div class="swiper-slide"><video controls preload="metadata"><source src="img/v1.mp4" type="video/mp4"></video></div>                    
-                   <div class="swiper-slide"><video controls preload="metadata"><source src="img/v2.mp4" type="video/mp4"></video></div>                    
-                   <div class="swiper-slide"><video controls preload="metadata"><source src="img/v3.mp4" type="video/mp4"></video></div>
-
+                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/v1.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/v2.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/v3.mp4" type="video/mp4"></video></div>
                 </div>
                 <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
@@ -205,6 +217,9 @@
 
     <section id="motivos">
         <h2 class="dancing" style="font-size: 2.5rem;">Por que eu escolho você?</h2>
+        
+        <p style="margin-bottom: 20px;">Clique no coração para descobrir</p>
+        
         <div id="pote-coracao" onclick="gerarMotivo()">❤️</div>
         <div id="texto-motivo" class="dancing"></div>
         <div class="seta">↓</div>
@@ -241,16 +256,16 @@
     <section id="secao-trancada">
         <div id="cadeado-container">
             <h2 class="dancing" style="font-size: 1.8rem; color: #d63384;">Um detalhe só nosso...</h2>
-            <p style="font-size: 0.9rem; margin-top: 10px;">Qual foi o lugar do nosso primeiro beijo? (Dica, no traba...</p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">Qual foi o lugar do nosso primeiro beijo? (Dica no traba...)</p>
             <input type="text" id="senha-input" placeholder="Digite aqui...">
             <button id="btn-desbloquear" onclick="verificarSenha()">Abrir meu coração</button>
         </div>
     </section>
 
     <section id="final">
-        <div class="glass-card">
+        <div class="glass-card" style="background: rgba(255, 255, 255, 0.9); border: 2px solid #d63384;">
             <h2 class="dancing" style="font-size: 2rem; margin-bottom: 15px; text-align: center; width: 100%;">Meu compromisso</h2>
-            <p id="texto-maquina" class="cursor-piscando" style="min-height: 80px;"></p>
+            <p id="texto-maquina" class="cursor-piscando" style="min-height: 120px;"></p>
             <span class="assinatura dancing" onclick="revelarSegredo()" style="text-align: center; margin-top: 20px; display: block;">Com amor, Alef ❤️</span>
         </div>
     </section>
@@ -260,12 +275,14 @@
         // CONFIGURAÇÃO DA SENHA
         const respostaCerta = "trabalho"; // <--- MUDE A SENHA AQUI
 
+        // EXPLOSÃO DE CONFETES INICIAL
         window.onload = function() {
             setTimeout(() => { confetti({ particleCount: 150, spread: 100, origin: { y: 0.3 }, colors: ['#d63384', '#ff85a2', '#ffffff'] }); }, 500);
         };
 
+        // CONTADOR DE TEMPO JUNTOS
         function atualizarContador() {
-            const dataInicio = new Date(2025, 10, 23); // Ano, Mês-1, Dia
+            const dataInicio = new Date(2024, 0, 1); // Ano, Mês-1, Dia
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -277,10 +294,11 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
+        // INICIALIZAÇÃO DOS SWIPERS
         new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
         new Swiper(".videoSwiper", { effect: "slide", grabCursor: true, autoHeight: true, spaceBetween: 20, pagination: { el: ".swiper-pagination", dynamicBullets: true }, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } });
 
-        // LOGICA DE MOTIVOS SEM REPETIÇÃO
+        // LÓGICA DOS MOTIVOS (SORTEIO SEM REPETIÇÃO)
         const motivosOriginais = [
             "Pelo seu apoio incondicional em todos os momentos.", 
             "Pelo seu sorriso que ilumina meu dia.", 
@@ -298,16 +316,11 @@
             clearTimeout(timerMotivo);
             
             timerMotivo = setTimeout(() => { 
-                // Se acabaram as opções, recarrega a lista
                 if (motivosDisponiveis.length === 0) {
                     motivosDisponiveis = [...motivosOriginais];
                 }
-
-                // Sorteia um índice dentro dos disponíveis
                 const randomIndex = Math.floor(Math.random() * motivosDisponiveis.length);
                 const motivoEscolhido = motivosDisponiveis[randomIndex];
-
-                // Remove o motivo escolhido para não repetir nesta rodada
                 motivosDisponiveis.splice(randomIndex, 1);
 
                 display.innerText = motivoEscolhido; 
@@ -315,42 +328,77 @@
             }, 300);
         }
 
+        // LÓGICA DO CADEADO E EFEITO CINEMA
         function verificarSenha() {
             const entrada = document.getElementById('senha-input').value.trim().toUpperCase();
             if (entrada === respostaCerta.toUpperCase()) {
+                
+                // Esconde a seção da senha
                 document.getElementById('secao-trancada').style.display = 'none';
+                
+                // Apaga as luzes (Ativa o Efeito Cinema)
+                document.getElementById('overlay-escuro').classList.add('ativo');
+                
+                // Mostra a carta final
                 const final = document.getElementById('final');
                 final.style.display = 'flex';
+                
+                // Rola suavemente até o final
+                final.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
                 setTimeout(() => { 
                     final.classList.add('aparecer');
                     digitarCarta();
-                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-                }, 100);
+                    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+                }, 800);
             } else {
                 alert("Essa ainda não é a resposta certa... Tente de novo, amor! ❤️");
             }
         }
 
-        const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, minha linda!";
+        // MÁQUINA DE ESCREVER (COM P.S. FINAL)
+        const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, minha linda! \n\nP.S.: Deixei um espaço em branco no final das nossas fotos... Ele está reservado para a nossa próxima viagem juntos.";
+        
         const elementoTexto = document.getElementById('texto-maquina');
         let indexDigitacao = 0;
+        
         function digitarCarta() {
             if (indexDigitacao < textoCarta.length) {
-                elementoTexto.innerHTML += textoCarta.charAt(indexDigitacao);
+                // Permite quebra de linha com \n
+                if(textoCarta.charAt(indexDigitacao) === '\n') {
+                    elementoTexto.innerHTML += '<br>';
+                } else {
+                    elementoTexto.innerHTML += textoCarta.charAt(indexDigitacao);
+                }
                 indexDigitacao++;
-                setTimeout(digitarCarta, 40);
-            } else { elementoTexto.classList.remove('cursor-piscando'); }
+                setTimeout(digitarCarta, 40); // Velocidade da digitação
+            } else { 
+                elementoTexto.classList.remove('cursor-piscando'); 
+            }
         }
 
-        function criarCoracoes() { for (let i = 0; i < 15; i++) { const c = document.createElement('div'); c.className = 'coracao-bg'; c.innerText = '❤️'; c.style.left = Math.random() * 100 + 'vw'; c.style.animationDelay = Math.random() * 10 + 's'; document.body.appendChild(c); } }
+        // CORAÇÕES DE FUNDO
+        function criarCoracoes() { 
+            for (let i = 0; i < 15; i++) { 
+                const c = document.createElement('div'); 
+                c.className = 'coracao-bg'; 
+                c.innerText = '❤️'; 
+                c.style.left = Math.random() * 100 + 'vw'; 
+                c.style.animationDelay = Math.random() * 10 + 's'; 
+                document.body.appendChild(c); 
+            } 
+        }
         criarCoracoes();
 
+        // OBSERVAÇÃO DE SCROLL (FADE IN/OUT)
         const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('aparecer'); }); }, { threshold: 0.1 });
         document.querySelectorAll('section').forEach(s => { if(s.id !== 'final') obs.observe(s); });
 
+        // OBSERVAÇÃO DA NUVEM DE PALAVRAS
         const obsNuvem = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) document.getElementById('nuvem-palavras').classList.add('animar'); }, { threshold: 0.5 });
         obsNuvem.observe(document.getElementById('secao-nuvem'));
 
+        // EASTER EGG DA ASSINATURA
         function revelarSegredo() { alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é minha escolha diária."); }
     </script>
 </body>
