@@ -34,7 +34,7 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* EFEITO DE REVELAÇÃO (FADE-IN E SLIDE) */
+        /* EFEITO DE REVELAÇÃO */
         section { 
             min-height: 100vh; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; 
@@ -52,7 +52,7 @@
             display: inline-block;
         }
 
-        /* SEÇÃO 1 - INÍCIO */
+        /* INÍCIO */
         h1 { font-size: 3rem; margin-bottom: 10px; }
         #contador { 
             font-size: 0.9rem; font-weight: 600; color: #854d68; 
@@ -62,9 +62,8 @@
             margin-top: 20px; border: 1px solid rgba(255, 255, 255, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        #contador:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(214, 51, 132, 0.15); }
 
-        /* SEÇÃO 2 - CARTAS EMPILHADAS */
+        /* CARTAS EMPILHADAS (FOTOS) */
         .swiper { width: 300px; height: 420px; margin-top: 30px; }
         .swiper-slide { display: flex; align-items: center; justify-content: center; border-radius: 18px; }
         .polaroid { 
@@ -77,14 +76,17 @@
         .polaroid img { width: 100%; height: 80%; object-fit: cover; border-radius: 5px; }
         .polaroid p { margin-top: 15px; font-size: 1.2rem; }
 
-        /* MÍDIAS E GLOW DO SPOTIFY */
+        /* CARROSSEL DE VÍDEOS */
         .midia-container { margin-top: 40px; width: 100%; max-width: 400px; }
-        video { 
-            width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 20px; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .videoSwiper { width: 100%; height: auto; margin-top: 10px; padding-bottom: 30px; }
+        .videoSwiper video { 
+            width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;
         }
-        video:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(214, 51, 132, 0.15); }
-        
+        .videoSwiper video:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(214, 51, 132, 0.15); }
+        .swiper-pagination-bullet-active { background: #d63384 !important; }
+
+        /* GLOW DO SPOTIFY */
         .spotify-glow { position: relative; margin-top: 10px; transition: transform 0.3s ease; }
         .spotify-glow:hover { transform: scale(1.02); }
         .spotify-glow::before {
@@ -115,7 +117,7 @@
             font-weight: 600; line-height: 1.5; padding: 0 20px;
         }
 
-        /* PROMESSAS E CARTA (MICRO-INTERAÇÕES) */
+        /* PROMESSAS E CARTA */
         .glass-card { 
             max-width: 500px; width: 90%;
             background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px);
@@ -127,7 +129,7 @@
         .glass-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(214, 51, 132, 0.1); }
         .lista-promessas li { margin-bottom: 15px; list-style: none; border-left: 3px solid #d63384; padding-left: 15px; font-size: 0.95rem; }
 
-        /* EFEITO MÁQUINA DE ESCREVER */
+        /* MÁQUINA DE ESCREVER */
         .cursor-piscando::after {
             content: '|'; animation: piscar 1s infinite; color: #d63384; font-weight: bold;
         }
@@ -157,19 +159,35 @@
         
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Onde tudo começou...</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em todos os detalhes, te amo...</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">O seu sorriso que eu amo.</p></div></div>
-                <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que possamos está sempre assim, juntos.</p></div></div>
+
             </div>
         </div>
 
         <div class="midia-container">
-            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 40px;">Um vídeo para você</h3>
-            <video controls><source src="img/video.mp4" type="video/mp4"></video>
+            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 10px; margin-top: 40px;">Nossos Vídeos</h3>
+            
+            <div class="swiper videoSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <video controls><source src="img/v1.mp4" type="video/mp4"></video>
+                    </div>
+                    <div class="swiper-slide">
+                        <video controls><source src="img/v2.mp4" type="video/mp4"></video>
+                    </div>
+                     <div class="swiper-slide">
+                        <video controls><source src="img/v3.mp4" type="video/mp4"></video>
+                    </div>
+                    </div>
+                <div class="swiper-pagination"></div>
+            </div>
 
             <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 30px;">Nossa Trilha Sonora</h3>
             <div class="spotify-glow">
-              <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5lvvqOEWpUvs2jaFkQTFWJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe data-testid="embed-iframe" style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/track/5lvvqOEWpUvs2jaFkQTFWJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </div>
         <div class="seta">↓</div>
@@ -187,10 +205,10 @@
         <h2 class="dancing" style="font-size: 2.5rem; margin-bottom: 25px;">Minhas Promessas</h2>
         <div class="glass-card lista-promessas">
             <ul>
-                <li>✨ Prometo ser seu porto seguro nos dias de ansiedade.</li>
-                <li>✨ Prometo te ouvir com atenção após o dia mais longo.</li>
-                <li>✨ Prometo escolher você, todos os dias, com consciência.</li>
-                <li>✨ Prometo que meu lar é você, não importa onde estejamos.</li>
+                <li> Prometo ser seu porto seguro nos dias de ansiedade.</li>
+                <li> Prometo te ouvir com atenção após o dia mais longo.</li>
+                <li> Prometo escolher você, todos os dias, com consciência.</li>
+                <li> Prometo que meu lar é você, não importa onde estejamos.</li>
             </ul>
         </div>
         <div class="seta">↓</div>
@@ -218,7 +236,7 @@
 
         // CONTADOR
         function atualizarContador() {
-            const dataInicio = new Date(2025, 10, 23); // Ano, Mês-1, Dia
+            const dataInicio = new Date(2025, 20, 23); // Ano, Mês-1, Dia
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -230,8 +248,19 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // SWIPER (CARTAS EMPILHADAS)
+        // SWIPER FOTOS (Cartas)
         new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
+
+        // SWIPER VÍDEOS (Deslize suave)
+        new Swiper(".videoSwiper", { 
+            effect: "slide", 
+            grabCursor: true,
+            spaceBetween: 20,
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+            },
+        });
 
         // MOTIVOS 
         const motivos = [
@@ -278,7 +307,7 @@
         document.querySelectorAll('section').forEach(s => obs.observe(s));
 
         // MÁQUINA DE ESCREVER
-        const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, te amo!";
+        const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, te amoo";
         const elementoTexto = document.getElementById('texto-maquina');
         let indexDigitacao = 0;
         let jaDigitou = false;
