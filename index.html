@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
     <style>
-        /* CONFIGURAÇÕES GERAIS E BARRA DE ROLAGEM PERSONALIZADA */
+        /* CONFIGURAÇÕES GERAIS E BARRA DE ROLAGEM */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         
@@ -53,7 +53,7 @@
             display: inline-block;
         }
 
-        /* SEÇÃO 1 - INÍCIO E GLASSMORPHISM NO CONTADOR */
+        /* SEÇÃO 1 - INÍCIO */
         h1 { font-size: 3rem; margin-bottom: 10px; }
         #contador { 
             font-size: 0.9rem; font-weight: 600; color: #854d68; 
@@ -78,25 +78,35 @@
         .polaroid img { width: 100%; height: 80%; object-fit: cover; border-radius: 5px; }
         .polaroid p { margin-top: 15px; font-size: 1.2rem; }
 
-        /* CARROSSEL DE VÍDEOS (ADAPTAÇÃO H/V E PAGINAÇÃO) */
-        .midia-container { margin-top: 40px; width: 100%; max-width: 400px; }
+        /* CARROSSEL DE VÍDEOS */
+        .midia-container { margin-top: 40px; width: 100%; max-width: 400px; position: relative; }
         
-        .videoSwiper { width: 100%; height: auto; margin-top: 10px; padding-bottom: 30px; }
+        .videoSwiper { width: 100%; margin-top: 10px; padding-bottom: 40px; }
         .videoSwiper video { 
             width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
             transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;
-            max-height: 80vh; /* Impede que vídeos verticais estiquem */
-            height: auto;
-            object-fit: contain; /* Centraliza sem distorcer vídeos vertical/horizontal */
+            max-height: 70vh; 
+            object-fit: contain; 
         }
-        .videoSwiper .swiper-slide {
-            display: flex; align-items: center; justify-content: center;
-        }
-        .videoSwiper video:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(214, 51, 132, 0.15); }
+        .videoSwiper .swiper-slide { display: flex; align-items: center; justify-content: center; }
         .swiper-pagination-bullet-active { background: #d63384 !important; }
 
+        /* SETAS DOS VÍDEOS */
+        .videoSwiper .swiper-button-next, 
+        .videoSwiper .swiper-button-prev {
+            color: #d63384;
+            transform: scale(0.6);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            top: 45%; /* Ajuste fino de altura */
+        }
+        .videoSwiper .swiper-button-next { right: 0px; }
+        .videoSwiper .swiper-button-prev { left: 0px; }
+
         /* GLOW DO SPOTIFY */
-        .spotify-glow { position: relative; margin-top: 10px; transition: transform 0.3s ease; }
+        .spotify-glow { position: relative; margin-top: 20px; transition: transform 0.3s ease; }
         .spotify-glow:hover { transform: scale(1.02); }
         .spotify-glow::before {
             content: ''; position: absolute;
@@ -126,7 +136,7 @@
             font-weight: 600; line-height: 1.5; padding: 0 20px;
         }
 
-        /* PROMESSAS E CARTA (MICRO-INTERAÇÕES) */
+        /* PROMESSAS E CARTA */
         .glass-card { 
             max-width: 500px; width: 90%;
             background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px);
@@ -138,7 +148,7 @@
         .glass-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(214, 51, 132, 0.1); }
         .lista-promessas li { margin-bottom: 15px; list-style: none; border-left: 3px solid #d63384; padding-left: 15px; font-size: 0.95rem; }
 
-        /* EFEITO MÁQUINA DE ESCREVER */
+        /* MÁQUINA DE ESCREVER */
         .cursor-piscando::after {
             content: '|'; animation: piscar 1s infinite; color: #d63384; font-weight: bold;
         }
@@ -164,19 +174,20 @@
 
     <section id="memorias">
         <h2 class="dancing" style="font-size: 2.5rem;">Nossa História</h2>
-        <p>(Deslize as fotos para o lado ❤️)</p>
+        <p style="margin-bottom: 20px;">(Deslize as fotos para o lado ❤️)</p>
         
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Onde tudo começou...</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em todos os detalhes, te amo...</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">O seu sorriso que eu amo.</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
-                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que permaneça sempre assim, com muito amor.</p></div></div>
+
             </div>
         </div>
 
         <div class="midia-container">
-            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 10px; margin-top: 40px;">Nossos Vídeos</h3>
+            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 40px;">Nossos Momentos</h3>
             
             <div class="swiper videoSwiper">
                 <div class="swiper-wrapper">
@@ -186,14 +197,16 @@
                     <div class="swiper-slide">
                         <video controls><source src="img/v2.mp4" type="video/mp4"></video>
                     </div>
-                     <div class="swiper-slide">
+                      <div class="swiper-slide">
                         <video controls><source src="img/v3.mp4" type="video/mp4"></video>
                     </div>
-                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
             </div>
 
-            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 30px;">Nossa Trilha Sonora</h3>
+            <h3 class="dancing" style="font-size: 1.8rem; margin-bottom: 15px; margin-top: 20px;">Nossa Trilha Sonora</h3>
             <div class="spotify-glow">
                 <iframe data-testid="embed-iframe" style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/track/5lvvqOEWpUvs2jaFkQTFWJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
@@ -225,26 +238,24 @@
     <section id="final">
         <div class="glass-card">
             <h2 class="dancing" style="font-size: 2rem; margin-bottom: 15px; text-align: center; width: 100%;">Meu compromisso</h2>
-            
             <p id="texto-maquina" class="cursor-piscando" style="min-height: 80px;"></p>
-            
             <span class="assinatura dancing" onclick="revelarSegredo()" style="text-align: center; margin-top: 20px; display: block;">Com amor, Alef ❤️</span>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // EXPLOSÃO DE CONFETES DE ANIVERSÁRIO (Cores Rosa/Branco)
+        // EXPLOSÃO DE CONFETES
         window.onload = function() {
             setTimeout(() => {
                 confetti({
                     particleCount: 150, spread: 100, origin: { y: 0.3 },
                     colors: ['#d63384', '#ff85a2', '#ffffff']
                 });
-            }, 500); // Pequeno delay para a página carregar suavemente
+            }, 500);
         };
 
-        // CONTADOR (Ajuste a data correta aqui)
+        // CONTADOR (Lembre de ajustar a data real de vocês aqui!)
         function atualizarContador() {
             const dataInicio = new Date(2024, 0, 1); // Ano, Mês-1, Dia
             const agora = new Date();
@@ -258,22 +269,20 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // SWIPER FOTOS (Cartas Empilhadas)
+        // SWIPER FOTOS
         new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
 
-        // SWIPER VÍDEOS (Correção Técnica H/V e Distância)
+        // SWIPER VÍDEOS (Com Setas e AutoHeight)
         new Swiper(".videoSwiper", { 
             effect: "slide", 
             grabCursor: true,
-            autoHeight: true, // Crucial para adaptar a altura e aproximar a paginação
+            autoHeight: true, // Aproxima o restante do site
             spaceBetween: 20,
-            pagination: {
-                el: ".swiper-pagination",
-                dynamicBullets: true,
-            },
+            pagination: { el: ".swiper-pagination", dynamicBullets: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
         });
 
-        // MOTIVOS (Correção de sobreposição)
+        // MOTIVOS 
         const motivos = [
             "Pelo seu apoio incondicional em todos os momentos.", 
             "Pelo seu sorriso que ilumina meu dia.", 
@@ -282,7 +291,6 @@
             "Pela paz que eu sinto dentro do seu abraço.", 
             "Pelo seu coração lindo e gigante."
         ];
-        
         let timerMotivo;
         function gerarMotivo() {
             const display = document.getElementById('texto-motivo');
@@ -294,12 +302,12 @@
             }, 300);
         }
 
-        // EASTER EGG (Segredo)
+        // EASTER EGG
         function revelarSegredo() { 
             alert("🌹 Você achou o segredo! Sabia que eu sorrio toda vez que recebo uma notificação sua? Você é minha escolha diária."); 
         }
 
-        // CORAÇÕES FLUTUANTES DE FUNDO
+        // CORAÇÕES FLUTUANTES
         function criarCoracoes() {
             for (let i = 0; i < 15; i++) {
                 const c = document.createElement('div');
@@ -311,13 +319,13 @@
         }
         criarCoracoes();
 
-        // OBSERVAÇÃO DE SCROLL (FADE IN/OUT)
+        // FADE IN AO DESCER O SITE
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('aparecer'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('section').forEach(s => obs.observe(s));
 
-        // MÁQUINA DE ESCREVER (Só digita quando chega na última seção)
+        // MÁQUINA DE ESCREVER
         const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, minha linda!";
         const elementoTexto = document.getElementById('texto-maquina');
         let indexDigitacao = 0;
@@ -327,19 +335,18 @@
             if (indexDigitacao < textoCarta.length) {
                 elementoTexto.innerHTML += textoCarta.charAt(indexDigitacao);
                 indexDigitacao++;
-                setTimeout(digitarCarta, 40); // Velocidade da digitação (40ms)
+                setTimeout(digitarCarta, 40);
             } else {
-                elementoTexto.classList.remove('cursor-piscando'); // Remove o cursor quando terminar
+                elementoTexto.classList.remove('cursor-piscando');
             }
         }
 
-        // Ativa a máquina de escrever quando a seção final fica visível
         const obsCarta = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !jaDigitou) {
                 jaDigitou = true;
-                setTimeout(digitarCarta, 800); // Pequeno delay antes de começar a digitar
+                setTimeout(digitarCarta, 800);
             }
-        }, { threshold: 0.5 }); // Ativa quando metade do cartão estiver visível
+        }, { threshold: 0.5 });
         obsCarta.observe(document.getElementById('final'));
 
     </script>
