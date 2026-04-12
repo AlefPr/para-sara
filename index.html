@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para Sara, Com Amor</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -139,10 +139,14 @@
             padding: 30px; border-radius: 20px; border: 2px solid #ff85a2;
             max-width: 350px; width: 90%;
         }
+        
+        /* CORREÇÃO DO ZOOM NO CELULAR */
         #senha-input {
             width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd;
             margin: 15px 0; outline: none; text-align: center; font-family: 'Montserrat', sans-serif;
+            font-size: 16px; /* <-- ISSO EVITA O ZOOM AUTOMÁTICO DO IPHONE/ANDROID */
         }
+        
         #btn-desbloquear {
             background: #d63384; color: white; border: none; padding: 10px 25px;
             border-radius: 50px; cursor: pointer; font-weight: 600; transition: 0.3s;
@@ -194,10 +198,10 @@
         
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Onde tudo começou...</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/01.jpeg"><p class="dancing">Em cada detalhe, amo voê...</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/03.jpeg"><p class="dancing">O seu sorriso que eu amo.</p></div></div>
                 <div class="swiper-slide"><div class="polaroid"><img src="img/05.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
-                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Que permaneça sempre assim, com muito amor.</p></div></div>
+                <div class="swiper-slide"><div class="polaroid"><img src="img/06.jpeg"><p class="dancing">Cada detalhe com você.</p></div></div>
 
             </div>
         </div>
@@ -206,10 +210,10 @@
             <h3 class="dancing" style="font-size: 1.8rem; margin-top: 40px; margin-bottom: 10px;">Nossos Momentos</h3>
             <div class="swiper videoSwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/v1.mp4" type="video/mp4"></video></div>
-                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/v2.mp4" type="video/mp4"></video></div>
-                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/v3.mp4" type="video/mp4"></video></div>
-
+                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/video1.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/video2.mp4" type="video/mp4"></video></div>
+                    <div class="swiper-slide"><video controls preload="metadata"><source src="img/video2.mp4" type="video/mp4"></video></div>
+                    
                 </div>
                 <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
@@ -264,7 +268,7 @@
     <section id="secao-trancada">
         <div id="cadeado-container">
             <h2 class="dancing" style="font-size: 1.8rem; color: #d63384;">Um detalhe só nosso...</h2>
-            <p style="font-size: 0.9rem; margin-top: 10px;">Qual foi o lugar do nosso primeiro beijo? (Dica: trabal...)</p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">Qual foi o lugar do nosso primeiro beijo? (Dica: trabal...</p>
             <input type="text" id="senha-input" placeholder="Digite aqui...">
             <button id="btn-desbloquear" onclick="verificarSenha()">Abrir meu coração</button>
         </div>
@@ -285,14 +289,12 @@
         // CONFIGURAÇÃO DA SENHA
         const respostaCerta = "trabalho"; // <--- MUDE A SENHA AQUI
 
-        // EXPLOSÃO DE CONFETES INICIAL
         window.onload = function() {
             setTimeout(() => { confetti({ particleCount: 150, spread: 100, origin: { y: 0.3 }, colors: ['#d63384', '#ff85a2', '#ffffff'] }); }, 500);
         };
 
-        // CONTADOR DE TEMPO JUNTOS
         function atualizarContador() {
-            const dataInicio = new Date(2025, 10, 23); // Ano, Mês-1, Dia
+            const dataInicio = new Date(2025, 10, 23); 
             const agora = new Date();
             const diff = agora - dataInicio;
             const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -304,11 +306,9 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        // INICIALIZAÇÃO DOS SWIPERS
         new Swiper(".mySwiper", { effect: "cards", grabCursor: true });
         new Swiper(".videoSwiper", { effect: "slide", grabCursor: true, autoHeight: true, spaceBetween: 20, pagination: { el: ".swiper-pagination", dynamicBullets: true }, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } });
 
-        // LÓGICA DOS MOTIVOS (SORTEIO SEM REPETIÇÃO)
         const motivosOriginais = [
             "Pelo seu apoio incondicional em todos os momentos.", 
             "Pelo seu sorriso que ilumina meu dia.", 
@@ -338,20 +338,23 @@
             }, 300);
         }
 
-        // LÓGICA DO CADEADO E EFEITO CINEMA
         function verificarSenha() {
-            const entrada = document.getElementById('senha-input').value.trim().toUpperCase();
+            const inputSenha = document.getElementById('senha-input');
+            const entrada = inputSenha.value.trim().toUpperCase();
+            
             if (entrada === respostaCerta.toUpperCase()) {
+                // Fecha o teclado virtual do celular automaticamente
+                inputSenha.blur();
                 
                 document.getElementById('secao-trancada').style.display = 'none';
-                
-                // Apaga as luzes
                 document.getElementById('overlay-escuro').classList.add('ativo');
                 
                 const final = document.getElementById('final');
                 final.style.display = 'flex';
                 
-                final.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => {
+                    final.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
 
                 setTimeout(() => { 
                     final.classList.add('aparecer');
@@ -363,12 +366,10 @@
             }
         }
 
-        // FUNÇÃO PARA ACENDER AS LUZES
         function fecharCinema() {
             document.getElementById('overlay-escuro').classList.remove('ativo');
         }
 
-        // MÁQUINA DE ESCREVER
         const textoCarta = "O tempo nos ensina que o que importa é o agora. E o meu agora é você. Ter total confiança no que estamos construindo é a minha maior certeza. Feliz aniversário, minha linda!";
         
         const elementoTexto = document.getElementById('texto-maquina');
@@ -388,7 +389,6 @@
             }
         }
 
-        // CORAÇÕES DE FUNDO
         function criarCoracoes() { 
             for (let i = 0; i < 15; i++) { 
                 const c = document.createElement('div'); 
